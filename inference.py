@@ -14,7 +14,7 @@ classes = ["Ivan Aivazovsky",
     "William Merritt Chase"
 ]
 
-m_path = 'weights\weights_ResNet18_drop_200.hdf5'
+m_path = './weights/weights_ResNet18_drop_200.hdf5'
 model = load_model(m_path)
 
 def predict(frame):
