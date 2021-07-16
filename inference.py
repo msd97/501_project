@@ -61,7 +61,7 @@ def gstreamer_pipeline(
         )
     )
 
-cap = cv2.VideoCapture(gstreamer_pipeline(flip_method=2, framerate=30), cv2.CAP_GSTREAMER)
+cap = cv2.VideoCapture(gstreamer_pipeline(flip_method=2), cv2.CAP_GSTREAMER)
 #cap = cv2.VideoCapture(0)
 
 while(True):
