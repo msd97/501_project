@@ -1,4 +1,3 @@
-import keras
 import cv2 
 import numpy as np
 from keras.models import load_model
@@ -22,7 +21,6 @@ def predict(frame):
     resized = cv2.resize(frame, (64,64), interpolation=cv2.INTER_LINEAR)
     resized = np.array(resized)
     resized = np.expand_dims(resized, axis=0)
-    print(resized.shape)
     pred = model.predict(resized, verbose=1)
     res = int(argmax(pred[0]))
     pred_class = classes[res]
