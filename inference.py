@@ -2,7 +2,11 @@ import cv2
 import numpy as np
 from keras.models import load_model
 from keras.backend import argmax
-from numpy.core.fromnumeric import _mean_dispatcher
+import firebase_admin
+from firebase_admin import db
+
+default_app = firebase_admin.initialize_app(options={'databaseURL':"https://artcompanion-8adad-default-rtdb.firebaseio.com/"})
+ref = db.reference("/others/")
 
 classes = ["Ivan Aivazovsky", 
     "Gustave Dore", 
@@ -11,6 +15,15 @@ classes = ["Ivan Aivazovsky",
     "Albrecht Durer", 
     "Zinaida Serebriakova", 
     "William Merritt Chase"
+]
+
+classes_fb = ['"Ivan Aivazovsky"', 
+    '"Gustave Doré"', 
+    '"Rembrandt"', 
+    '"Pierre-Auguste Renoir"', 
+    '"Albrecht Dürer"', 
+    '"Zinaida Serebriakova"', 
+    '"William Merritt Chase"'
 ]
 
 m_path = './weights/weights_ResNet18_drop_200.hdf5'
@@ -24,6 +37,7 @@ def predict(frame):
     pred = model.predict(resized, verbose=1)
     res = int(argmax(pred[0]))
     pred_class = classes[res]
+    ref.update({"detection":classes_fb[res]})
     conf_level = pred[0][res] * 100
 
     return pred_class, conf_level
@@ -61,6 +75,8 @@ def gstreamer_pipeline(
 
 cap = cv2.VideoCapture(gstreamer_pipeline(flip_method=2), cv2.CAP_GSTREAMER)
 #cap = cv2.VideoCapture(0)
+
+mark = "No detection yet"
 
 while(True):
     
