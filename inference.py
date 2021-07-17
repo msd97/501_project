@@ -1,4 +1,5 @@
 import cv2 
+import time
 import numpy as np
 from keras.models import load_model
 from keras.backend import argmax
@@ -77,20 +78,25 @@ cap = cv2.VideoCapture(gstreamer_pipeline(flip_method=2), cv2.CAP_GSTREAMER)
 #cap = cv2.VideoCapture(0)
 
 mark = "No detection yet"
+init_time = time.time()
+curr_time = time.time()
 
 while(True):
     
     # Capture the video frame
     # by frame
     ret, frame = cap.read()
-    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-    label, conf_level = predict(frame)
-    mark = label + " " + "{:.2f}%".format(conf_level)
+    if curr_time - init_time > 5:
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        label, conf_level = predict(frame)
+        mark = label + " " + "{:.2f}%".format(conf_level)
+        init_time = time.time()
+        frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
     frame = cv2.putText(frame, mark, (0, 24), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2, cv2.LINE_AA)
-    frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+    
     # Display the resulting frame
     cv2.imshow('frame', frame)
-    
+    curr_time = time.time()
     # the 'q' button is set as the
     # quitting button you may use any
     # desired button of your choice
