@@ -86,7 +86,7 @@ while(True):
     # Capture the video frame
     # by frame
     ret, frame = cap.read()
-    if curr_time - init_time > 5:
+    if curr_time - init_time > 0.5:
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         label, conf_level = predict(frame)
         mark = label + " " + "{:.2f}%".format(conf_level)
