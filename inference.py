@@ -110,5 +110,6 @@ while(True):
   
 # After the loop release the cap object
 cap.release()
+out.release()
 # Destroy all the windows
 cv2.destroyAllWindows()
