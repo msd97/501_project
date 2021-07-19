@@ -75,6 +75,10 @@ def gstreamer_pipeline(
     )
 
 cap = cv2.VideoCapture(gstreamer_pipeline(flip_method=2), cv2.CAP_GSTREAMER)
+frame_width = int(cap.get(3))
+frame_height = int(cap.get(4))
+
+out = cv2.VideoWriter('demo_video.avi',cv2.VideoWriter_fourcc('M','J','P','G'), 10, (frame_width,frame_height))
 #cap = cv2.VideoCapture(0)
 
 mark = "No detection yet"
@@ -94,6 +98,7 @@ while(True):
         frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
     frame = cv2.putText(frame, mark, (0, 24), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2, cv2.LINE_AA)
     
+    out.write(frame)
     # Display the resulting frame
     cv2.imshow('frame', frame)
     curr_time = time.time()
