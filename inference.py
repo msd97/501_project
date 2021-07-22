@@ -18,13 +18,13 @@ classes = ["Albrecht Durer",
     "Zinaida Serebriakova"
 ]
 
-classes_fb = ["Albrecht Dürer", 
-    "Gustave Doré", 
-    "Ivan Aivazovsky", 
-    "Pierre-Auguste Renoir", 
-    "Rembrandt", 
-    "William Merritt Chase", 
-    "Zinaida Serebriakova"
+classes_fb = ['"Albrecht Dürer"', 
+    '"Gustave Doré"', 
+    '"Ivan Aivazovsky"', 
+    '"Pierre-Auguste Renoir"', 
+    '"Rembrandt"', 
+    '"William Merritt Chase"', 
+    '"Zinaida Serebriakova"'
 ]
 
 m_path = './weights/weights_ResNet18_drop_200.hdf5'
