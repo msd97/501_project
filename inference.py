@@ -9,22 +9,22 @@ from firebase_admin import db
 default_app = firebase_admin.initialize_app(options={'databaseURL':"https://artcompanion-8adad-default-rtdb.firebaseio.com/"})
 ref = db.reference("/others/")
 
-classes = ["Ivan Aivazovsky", 
+classes = ["Albrecht Durer", 
     "Gustave Dore", 
-    "Rembrandt", 
+    "Ivan Aivazovsky", 
     "Pierre-Auguste Renoir", 
-    "Albrecht Durer", 
-    "Zinaida Serebriakova", 
-    "William Merritt Chase"
+    "Rembrandt", 
+    "William Merritt Chase", 
+    "Zinaida Serebriakova"
 ]
 
-classes_fb = ['"Ivan Aivazovsky"', 
-    '"Gustave Doré"', 
-    '"Rembrandt"', 
-    '"Pierre-Auguste Renoir"', 
-    '"Albrecht Dürer"', 
-    '"Zinaida Serebriakova"', 
-    '"William Merritt Chase"'
+classes_fb = ["Albrecht Dürer", 
+    "Gustave Doré", 
+    "Ivan Aivazovsky", 
+    "Pierre-Auguste Renoir", 
+    "Rembrandt", 
+    "William Merritt Chase", 
+    "Zinaida Serebriakova"
 ]
 
 m_path = './weights/weights_ResNet18_drop_200.hdf5'
